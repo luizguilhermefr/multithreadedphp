@@ -1,6 +1,8 @@
 <?php
 
 include_once "generators.php";
+include_once "verbose.php";
+include_once "sync_math.php";
 
 function print_invalid_arguments() {
   echo "Invalid arguments!\n";
@@ -8,7 +10,7 @@ function print_invalid_arguments() {
   echo "php -f run-single.php [matrix size] [--verbose]\n";
 }
 
-function parse_commands($arguments) {
+function parse_commands(array $arguments) {
   global $verbose, $size;
   if (!((count($arguments) >= 2) && intval($arguments[1]))) {
     print_invalid_arguments();
@@ -30,10 +32,34 @@ $m1 = generate_matrix($size);
 $m2 = generate_matrix($size);
 
 if ($verbose) {
-  echo "M1:\n";
-  print_r($m1);
-  echo "\nM2:\n";
-  print_r($m2);
+  print_matrixes($m1, $m2);
 }
+
+$time_start = microtime(true);
+
+$m1 = square($m1);
+
+$m2 = square($m2);
+
+if ($verbose) {
+  print_matrixes($m1, $m2, 'M1²', 'M2²');
+}
+
+$m3 = sub($m1, $m2);
+
+if ($verbose) {
+  print_matrix($m3, 'M1² - M2²');
+}
+
+$sum = diff_sum($m3);
+
+$time_end = microtime(true);
+
+if ($verbose) {
+  print_double($sum, 'Sum of differences');
+  echo "\n";
+}
+
+print_time($time_start, $time_end);
 
 ?>
