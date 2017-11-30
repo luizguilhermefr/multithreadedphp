@@ -1,29 +1,30 @@
 <?php
 
-include_once "sync_generators.php";
-include_once "sync_math.php";
 include_once "verbose.php";
 
 function print_invalid_arguments() {
   echo "Invalid arguments!\n";
   echo "Usage:\n";
-  echo "php -f run-single.php [matrix size] [--verbose]\n";
+  echo "php -f run.php [matrix size] [threads count] [--verbose]\n";
 }
 
 function parse_commands(array $arguments) {
-  global $verbose, $size;
-  if (!((count($arguments) >= 2) && intval($arguments[1]))) {
+  global $verbose, $size, $threads;
+  if (!((count($arguments) >= 3) && intval($arguments[1]) && intval($arguments[2]))) {
     print_invalid_arguments();
     die(1);
   }
 
-  $verbose = count($arguments) >= 3 ? $arguments[2] == '--verbose' : false;
+  $verbose = count($arguments) >= 4 ? $arguments[3] == '--verbose' : false;
   $size = intval($arguments[1]);
+  $threads = intval($arguments[2]);
 }
 
 $verbose = false;
 
 $size = 0;
+
+$threads = 1;
 
 parse_commands($argv);
 

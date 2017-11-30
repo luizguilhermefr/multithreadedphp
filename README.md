@@ -16,7 +16,7 @@ sudo apt-get install php7.0-cli
 To run, just type in bash terminal:
 
 ```
-php -f run.php [matrix size] [threads number] [--verbose]
+php -f run.php [matrix size] [threads count] [--verbose]
 ```
 
 For instance:
