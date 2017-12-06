@@ -67,14 +67,22 @@ class MatrixMaths {
     $threads = [];
     $result = .0;
 
-    for ($i = 0; $i < count($matrix); $i++) {
-      $threads[$i] = new SumOfLine($matrix[$i]);
-      $threads[$i]->start();
+    for ($i = 0; $i < $threadCount; $i++) {
+      $threads[$i] = new SumOfLine();
     }
 
     for ($i = 0; $i < count($matrix); $i++) {
-      $threads[$i]->join();
-      $result += $threads[$i]->result;
+      $id = $threads[$i % $threadCount]->pushWork($matrix[$i]);
+    }
+
+    for ($i = 0; $i < $threadCount; $i++) {
+      $threads[$i]->start();
+    }
+
+    for ($i = 0; $i < $threadCount; $i++) {
+      $index = $i % $threadCount;
+      $threads[$index]->join();
+      $result += $threads[$index]->result;
     }
 
     return $result;

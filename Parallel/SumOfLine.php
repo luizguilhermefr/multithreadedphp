@@ -6,14 +6,21 @@ class SumOfLine extends Thread {
 
   private $line;
 
-  public function __construct($line) {
-    $this->line = $line;
+  private $works = [];
+
+  public function __construct() {
     $this->result = .0;
   }
 
+  public function pushWork($line) {
+    $this->works[] = $line;
+  }
+
   public function run() {
-    for ($i = 0; $i < count($this->line); $i++) {
-      $this->result += $this->line[$i];
+    for ($i = 0; $i < count($this->works); $i++) {
+      for ($j = 0; $j < count($this->works[$i]); $j++) {
+        $this->result += $this->works[$i][$j];
+      }
     }
   }
 }

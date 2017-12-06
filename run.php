@@ -56,16 +56,16 @@ $m3 = MatrixMaths::sub($m1, $m2, $threads);
 if ($verbose) {
   print_matrix($m3, 'M1² - M2²');
 }
-//
-// $sum = MatrixMaths::sumAll($m3, $threads);
-//
-// $time_end = microtime(true);
-//
-// if ($verbose) {
-//   print_double($sum, 'Sum of differences');
-//   echo "\n";
-// }
-//
-// print_time($time_start, $time_end);
+
+$sum = MatrixMaths::sumAll($m3, $threads);
+
+$time_end = microtime(true);
+
+if ($verbose) {
+  print_double($sum, 'Sum of differences');
+  echo "\n";
+}
+
+print_time($time_start, $time_end);
 
 ?>
