@@ -1,6 +1,6 @@
 <?php
 
-class SubLine extends Thread {
+class SubLines extends Thread {
 
   public $result;
 

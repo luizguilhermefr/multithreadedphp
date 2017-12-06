@@ -1,7 +1,8 @@
 <?php
 
 include_once "Parallel/PowerLine.php";
-include_once "Parallel/SubLine.php";
+include_once "Parallel/SubLines.php";
+include_once "Parallel/SumOfLine.php";
 
 class MatrixMaths {
 
@@ -26,7 +27,7 @@ class MatrixMaths {
     $matrixResult = [];
 
     for ($i = 0; $i < count($m1); $i++) {
-      $threads[$i] = new SubLine($m1[$i], $m2[$i]);
+      $threads[$i] = new SubLines($m1[$i], $m2[$i]);
       $threads[$i]->start();
     }
 
@@ -36,6 +37,23 @@ class MatrixMaths {
     }
 
     return $matrixResult;
+  }
+
+  public static function sumAll(array $matrix, int $threadCount) {
+    $threads = [];
+    $result = .0;
+
+    for ($i = 0; $i < count($matrix); $i++) {
+      $threads[$i] = new SumOfLine($matrix[$i]);
+      $threads[$i]->start();
+    }
+
+    for ($i = 0; $i < count($matrix); $i++) {
+      $threads[$i]->join();
+      $result += $threads[$i]->result;
+    }
+
+    return $result;
   }
 
 }
