@@ -22,6 +22,8 @@ function parse_commands(array $arguments) {
   $threads = intval($arguments[2]);
 }
 
+ini_set('memory_limit', '-1');
+
 $verbose = false;
 
 $size = 0;

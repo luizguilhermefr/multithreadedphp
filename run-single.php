@@ -21,6 +21,8 @@ function parse_commands(array $arguments) {
   $size = intval($arguments[1]);
 }
 
+ini_set('memory_limit', '-1');
+
 $verbose = false;
 
 $size = 0;
