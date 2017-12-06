@@ -10,7 +10,7 @@ class PowerLine extends Thread {
 
   private $lastResultGiven = -1;
 
-  public $works = [];
+  private $works = [];
 
   public function __construct(float $expoent = 2.0) {
     $this->arr = [];

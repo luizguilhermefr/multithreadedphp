@@ -38,14 +38,26 @@ class MatrixMaths {
     $threads = [];
     $matrixResult = [];
 
+    for ($i = 0; $i < $threadCount; $i++) {
+      $threads[$i] = new SubLines();
+    }
+
     for ($i = 0; $i < count($m1); $i++) {
-      $threads[$i] = new SubLines($m1[$i], $m2[$i]);
+      $index = $i % $threadCount;
+      $id = $threads[$index]->pushWork($m1[$i], $m2[$i]);
+      $threads[$index]->arr[$id] = [];
+    }
+
+    for ($i = 0; $i < $threadCount; $i++) {
       $threads[$i]->start();
     }
 
     for ($i = 0; $i < count($m1); $i++) {
-      $threads[$i]->join();
-      $matrixResult[$i] = $threads[$i]->result;
+      $index = $i % $threadCount;
+      if (!$threads[$index]->isJoined()) {
+        $threads[$index]->join();
+      }
+      $matrixResult[$index] = $threads[$index]->nextResult();
     }
 
     return $matrixResult;

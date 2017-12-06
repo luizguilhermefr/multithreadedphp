@@ -50,12 +50,12 @@ $m2 = MatrixMaths::pow($m2, $threads);
 if ($verbose) {
   print_matrixes($m1, $m2, 'M1²', 'M2²');
 }
-//
-// $m3 = MatrixMaths::sub($m1, $m2, $threads);
-//
-// if ($verbose) {
-//   print_matrix($m3, 'M1² - M2²');
-// }
+
+$m3 = MatrixMaths::sub($m1, $m2, $threads);
+
+if ($verbose) {
+  print_matrix($m3, 'M1² - M2²');
+}
 //
 // $sum = MatrixMaths::sumAll($m3, $threads);
 //
