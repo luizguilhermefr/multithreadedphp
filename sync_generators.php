@@ -2,7 +2,7 @@
 
 include_once "generics.php";
 
-function generate_matrix($size, $min_float = 0, $max_float = 100, $decimals = 5) {
+function generate_matrix(int $size, float $min_float = .0, float $max_float = 100.0, int $decimals = 5) {
   $mat = [];
   for ($i = 0; $i < $size; $i++) {
     for ($j = 0; $j < $size; $j++) {

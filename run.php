@@ -3,6 +3,7 @@
 include_once "verbose.php";
 include_once "Parallel/LineGenerator.php";
 include_once "Parallel/MatrixGenerator.php";
+include_once "Parallel/MatrixMaths.php";
 
 function print_invalid_arguments() {
   echo "Invalid arguments!\n";
@@ -41,14 +42,14 @@ $m2 = MatrixGenerator::generate($size, $threads);
 if ($verbose) {
   print_matrixes($m1, $m2);
 }
-//
-// $m1 = square($m1);
-//
-// $m2 = square($m2);
-//
-// if ($verbose) {
-//   print_matrixes($m1, $m2, 'M1²', 'M2²');
-// }
+
+$m1 = MatrixMaths::pow($m1, $threads);
+
+$m2 = MatrixMaths::pow($m2, $threads);
+
+if ($verbose) {
+  print_matrixes($m1, $m2, 'M1²', 'M2²');
+}
 //
 // $m3 = sub($m1, $m2);
 //

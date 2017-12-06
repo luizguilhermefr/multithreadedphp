@@ -14,7 +14,7 @@ class LineGenerator extends Thread {
 
   private $decimals;
 
-  public function __construct(int $size, $minFloat = 0, $maxFloat = 100, $decimals = 5) {
+  public function __construct(int $size, float $minFloat = .0, float $maxFloat = 100.0, int $decimals = 5) {
     $this->arr = [];
     $this->size = $size;
     $this->minFloat = $minFloat;

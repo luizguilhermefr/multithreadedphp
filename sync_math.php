@@ -1,6 +1,6 @@
 <?php
 
-function square($matrix) {
+function square(array $matrix) {
   for ($i = 0; $i < count($matrix); $i++) {
     for ($j = 0; $j < count($matrix[$i]); $j++) {
       $matrix[$i][$j] = pow($matrix[$i][$j], 2);
@@ -10,7 +10,7 @@ function square($matrix) {
   return $matrix;
 }
 
-function sub($m1, $m2) {
+function sub(array $m1, array $m2) {
   $matrix = [];
   for ($i = 0; $i < count($m1); $i++) {
     for ($j = 0; $j < count($m1); $j++) {
@@ -21,7 +21,7 @@ function sub($m1, $m2) {
   return $matrix;
 }
 
-function diff_sum($matrix) {
+function diff_sum(array $matrix) {
   $sum = .0;
   for ($i = 0; $i < count($matrix); $i++) {
     for ($j = 0; $j < count($matrix[$i]); $j++) {
