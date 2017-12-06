@@ -50,13 +50,13 @@ $m2 = MatrixMaths::pow($m2, $threads);
 if ($verbose) {
   print_matrixes($m1, $m2, 'M1²', 'M2²');
 }
-//
-// $m3 = sub($m1, $m2);
-//
-// if ($verbose) {
-//   print_matrix($m3, 'M1² - M2²');
-// }
-//
+
+$m3 = MatrixMaths::sub($m1, $m2, $threads);
+
+if ($verbose) {
+  print_matrix($m3, 'M1² - M2²');
+}
+
 // $sum = diff_sum($m3);
 //
 // $time_end = microtime(true);

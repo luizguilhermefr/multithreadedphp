@@ -1,7 +1,5 @@
 <?php
 
-include_once __DIR__."/../generics.php";
-
 class PowerLine extends Thread {
 
   public $arr;
