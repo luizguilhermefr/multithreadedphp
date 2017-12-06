@@ -9,14 +9,26 @@ class MatrixMaths {
   public static function pow(array $matrix, int $threadCount, float $expoent = 2.0) {
     $threads = [];
 
+    for ($i = 0; $i < $threadCount; $i++) {
+      $threads[$i] = new PowerLine($expoent);
+    }
+
     for ($i = 0; $i < count($matrix); $i++) {
-      $threads[$i] = new PowerLine($matrix[$i]);
+      $index = $i % $threadCount;
+      $id = $threads[$index]->pushWork($matrix[$i]);
+      $threads[$index]->arr[$id] = [];
+    }
+
+    for ($i = 0; $i < $threadCount; $i++) {
       $threads[$i]->start();
     }
 
     for ($i = 0; $i < count($matrix); $i++) {
-      $threads[$i]->join();
-      $matrix[$i] = $threads[$i]->arr;
+      $index = $i % $threadCount;
+      if (!$threads[$index]->isJoined()) {
+        $threads[$index]->join();
+      }
+      $matrix[$index] = $threads[$index]->nextResult();
     }
 
     return $matrix;

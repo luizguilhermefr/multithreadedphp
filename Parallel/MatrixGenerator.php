@@ -27,7 +27,7 @@ class MatrixGenerator {
       if (!$threads[$index]->isJoined()) {
         $threads[$index]->join();
       }
-      $matrix[$index] = $threads[$i % $threadCount]->nextResult();
+      $matrix[$index] = $threads[$index]->nextResult();
     }
 
     return $matrix;
