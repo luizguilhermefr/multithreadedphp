@@ -7,6 +7,7 @@ An example of multi threading with PHP CLI using matrix operations.
 Install PHP 7.0:
 
 ```
+sudo apt-get install libxml2-dev autoconf
 cd /usr/local/src
 sudo wget http://br2.php.net/distributions/php-7.0.26.tar.gz
 sudo tar xzf php-7.0.26.tar.gz
@@ -20,7 +21,6 @@ sudo cp php.ini-development /etc/php.ini
 Install [pthreads](https://github.com/krakjoe/pthreads):
 
 ```
-sudo apt-get install autoconf
 cd /usr/local/src
 sudo wget https://github.com/krakjoe/pthreads/archive/v3.1.6.tar.gz
 sudo mv v3.1.6.tar.gz pthreads-v3.1.6.tar.gz
